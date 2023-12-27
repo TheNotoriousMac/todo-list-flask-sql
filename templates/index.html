@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Todo List{% endblock %}
+
+{% block content %}
+    <h1>My Todos</h1>
+    {% if todos == []: %}
+      <p>Todo List is empty.</p>
+    {% else: %}
+      <ul>
+        {% for todo in todos: %}
+          <li class="p-2">
+            <span>{{ todo.todo_text }}</span>
+            <a href="{{ url_for('edit', id=todo.id) }}" class="btn btn-success">Edit Todo</a>
+            <a href="{{ url_for('delete', id=todo.id) }}" class="btn btn-danger">Delete</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <a href="{{ url_for('add') }}" class="btn btn-primary">Add Todo</a>
+{% endblock %}
